@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md border border-gray-200;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  }
+  
+  .primary-600 {
+    @apply text-blue-600;
+  }
+  
+  .bg-primary-600 {
+    @apply bg-blue-600;
+  }
+  
+  .border-primary-300 {
+    @apply border-blue-300;
+  }
+  
+  .focus\:ring-primary-200 {
+    @apply focus:ring-blue-200;
+  }
+  
+  .focus\:border-primary-300 {
+    @apply focus:border-blue-300;
+  }
+}
+
+:root {
+          --primary-blue: #4A69BD;
+          --light-blue: #E8F2FF;
+          --success-green: #27AE60;
+          --accent-red: #E74C3C;
+          --text-primary: #2C3E50;
+          --text-secondary: #7F8C8D;
+          --background: #F8FAFC;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .card-hover {
+          transition: all 0.2s ease;
+          background: white;
+          border: 1px solid #E1E8ED;
+        }
+        .card-hover:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(74, 105, 189, 0.08);
+          border-color: var(--primary-blue);
+        }
+        .primary-bg { background-color: var(--primary-blue); }
+        .primary-bg:hover { background-color: #3c5aa6; }
+        .success-text { color: var(--success-green); }
+        .accent-bg { background-color: var(--accent-red); }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+      
