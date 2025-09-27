@@ -3,7 +3,7 @@ import axios from 'axios';
 // Check environment and set API URL
 // In development, use direct connection to backend
 // In production, use full API URL
-const API_BASE_URL = 'https://global-backend-1-kvjo.onrender.com';
+const API_BASE_URL = 'https://backend-api-global.onrender.com';
   
 console.log('🔧 API Configuration:', {
   VITE_API_URL: import.meta.env.VITE_API_URL,
