@@ -140,7 +140,12 @@ export default function GlobalEducationCenter() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <img src="hero-image.png" width={'100%'}/>
+                  <div className="w-full h-48 bg-gradient-to-r from-logo-red to-logo-red-light rounded-xl flex items-center justify-center shadow-inner">
+                    <div className="text-center">
+                      <i className="fas fa-graduation-cap text-6xl text-white mb-4"></i>
+                      <h4 className="text-xl font-bold text-white">Ta'lim - Kelajak Kaliti</h4>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -201,7 +206,13 @@ export default function GlobalEducationCenter() {
             </div>
             <div className="relative">
               <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg">
-                <img src="modern-classroom.png" className="w-full h-auto rounded-lg shadow-md" alt="Zamonaviy darsxona" />
+                <div className="w-full h-64 bg-gradient-to-br from-logo-blue-light to-logo-blue rounded-lg shadow-md flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <i className="fas fa-chalkboard-teacher text-6xl mb-4"></i>
+                    <h4 className="text-xl font-bold">Zamonaviy Ta'lim Usullari</h4>
+                    <p className="text-blue-100 mt-2">Eng so'nggi texnologiyalar bilan</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

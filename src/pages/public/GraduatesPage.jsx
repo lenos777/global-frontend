@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { GraduationCap, Award, Filter, Building } from 'lucide-react';
-import { graduatesApi } from '../../services/api';
+import { graduatesApi, resolveImageUrl } from '../../services/api';
 import ZoomableImage from '../../components/ui/ZoomableImage';
 
 const GraduatesPage = () => {
@@ -32,16 +32,21 @@ const GraduatesPage = () => {
       filters.limit = 8; // Load 8 items at a time
       
       const response = await graduatesApi.getAll(filters);
-      
-      // Update graduates list - if page 1, replace, else append
+      const items = response.data?.data || [];
+      const pagination = response.data?.pagination || {};
+
+      const mapped = items.map((g) => ({
+        ...g,
+        imageUrl: g.imageUrl ? resolveImageUrl(g.imageUrl) : ''
+      }));
+
       if (pageNum === 1) {
-        setGraduates(response.data);
+        setGraduates(mapped);
       } else {
-        setGraduates(prev => [...prev, ...response.data]);
+        setGraduates(prev => [...prev, ...mapped]);
       }
-      
-      // Check if there are more items to load
-      setHasMore(response.data.length === 8);
+
+      setHasMore(Boolean(pagination.hasNextPage));
       
       // Extract unique fields for filter
       if (!selectedField && pageNum === 1) {

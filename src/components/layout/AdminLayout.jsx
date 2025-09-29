@@ -1,12 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import AdminNavbar from './AdminNavbar';
 import AdminSidebar from './AdminSidebar';
 import { useState } from 'react';
 
 const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
 
   return (
+    !token ? <Navigate to="/admin-login" replace /> : (
     <div className="min-h-screen bg-gray-50">
       <AdminNavbar 
         onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
@@ -24,6 +26,7 @@ const AdminLayout = () => {
         </main>
       </div>
     </div>
+    )
   );
 };
 

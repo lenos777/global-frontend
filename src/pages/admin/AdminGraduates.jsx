@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Eye, EyeOff, GraduationCap } from 'lucide-react';
-import { graduatesApi, groupsApi } from '../../services/api';
+import { graduatesApi, groupsApi, resolveImageUrl } from '../../services/api';
 
 const AdminGraduates = () => {
   const [graduates, setGraduates] = useState([]);
@@ -45,7 +45,8 @@ const AdminGraduates = () => {
       if (response.data.pagination) {
         // New paginated format
         const graduatesData = Array.isArray(response.data.data) ? response.data.data : [];
-        setGraduates(graduatesData);
+        const mapped = graduatesData.map(g => ({ ...g, imageUrl: g.imageUrl ? resolveImageUrl(g.imageUrl) : '' }));
+        setGraduates(mapped);
         setTotalPages(response.data.pagination.totalPages);
         setTotalItems(response.data.pagination.totalItems);
         setHasNextPage(response.data.pagination.hasNextPage);
@@ -53,7 +54,8 @@ const AdminGraduates = () => {
       } else {
         // Old format (fallback)
         const graduatesData = Array.isArray(response.data) ? response.data : [];
-        setGraduates(graduatesData);
+        const mapped = graduatesData.map(g => ({ ...g, imageUrl: g.imageUrl ? resolveImageUrl(g.imageUrl) : '' }));
+        setGraduates(mapped);
         setTotalPages(1);
         setTotalItems(graduatesData.length);
         setHasNextPage(false);
@@ -177,10 +179,12 @@ const AdminGraduates = () => {
       // Handle both old and new API response formats
       if (response.data.pagination) {
         const graduatesData = Array.isArray(response.data.data) ? response.data.data : [];
-        setGraduates(graduatesData);
+        const mapped = graduatesData.map(g => ({ ...g, imageUrl: g.imageUrl ? resolveImageUrl(g.imageUrl) : '' }));
+        setGraduates(mapped);
       } else {
         const graduatesData = Array.isArray(response.data) ? response.data : [];
-        setGraduates(graduatesData);
+        const mapped = graduatesData.map(g => ({ ...g, imageUrl: g.imageUrl ? resolveImageUrl(g.imageUrl) : '' }));
+        setGraduates(mapped);
       }
     } catch (error) {
       console.error('Error fetching all graduates:', error);

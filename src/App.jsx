@@ -19,6 +19,7 @@ import AdminGraduates from './pages/admin/AdminGraduates';
 import GroupPanel from './pages/admin/GroupPanel';
 import CreateTestResult from './pages/admin/CreateTestResult';
 import EditTestResult from './pages/admin/EditTestResult';
+import AdminLogin from './pages/admin/AdminLogin';
 
 // Layout Components
 import PublicLayout from './components/layout/PublicLayout';
@@ -39,6 +40,7 @@ function App() {
           </Route>
 
           {/* Admin Routes */}
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="students" element={<StudentsManagement />} />

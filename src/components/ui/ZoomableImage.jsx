@@ -55,14 +55,22 @@ const ImageZoomModal = ({ src, alt, isOpen, onClose }) => {
 
 const ZoomableImage = ({ src, alt, className = "", ...props }) => {
   const [isZoomOpen, setIsZoomOpen] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src);
+
+  const handleError = () => {
+    if (currentSrc !== '/default-certificate.jpg') {
+      setCurrentSrc('/default-certificate.jpg');
+    }
+  };
 
   return (
     <>
       <div className="relative group cursor-pointer" onClick={() => setIsZoomOpen(true)}>
         <img
-          src={src}
+          src={currentSrc}
           alt={alt}
           className={`${className} transition-transform duration-300 group-hover:scale-105`}
+          onError={handleError}
           {...props}
         />
         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200 flex items-center justify-center rounded-lg">
@@ -71,7 +79,7 @@ const ZoomableImage = ({ src, alt, className = "", ...props }) => {
       </div>
       
       <ImageZoomModal
-        src={src}
+        src={currentSrc}
         alt={alt}
         isOpen={isZoomOpen}
         onClose={() => setIsZoomOpen(false)}

@@ -3,7 +3,11 @@ import axios from 'axios';
 // Check environment and set API URL
 // In development, use direct connection to backend
 // In production, use full API URL
-const API_BASE_URL = 'https://backend-api-global.onrender.com';
+const RAW_BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
+  ? import.meta.env.VITE_API_URL
+  : 'http://localhost:5000';
+// Remove trailing '/api' if present to avoid double '/api' in request paths
+export const API_BASE_URL = RAW_BASE.replace(/\/?api\/?$/i, '');
   
 console.log('🔧 API Configuration:', {
   VITE_API_URL: import.meta.env.VITE_API_URL,
@@ -24,6 +28,12 @@ const api = axios.create({
 // Request interceptor for debugging
 api.interceptors.request.use(
   (config) => {
+    // Attach JWT token if available
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     console.log(`🚀 API so'rov: ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
     console.log('API_BASE_URL:', API_BASE_URL);
     return config;
@@ -142,6 +152,22 @@ export const graduatesApi = {
   }),
   togglePublish: (id) => api.patch(`/api/graduates/${id}/publish`),
   delete: (id) => api.delete(`/api/graduates/${id}`),
+};
+
+// Auth API
+export const authApi = {
+  login: (username, password) => api.post('/api/auth/login', { username, password })
+};
+
+// Helper to resolve image URLs returned from backend
+export const resolveImageUrl = (relativeOrAbsolute) => {
+  if (!relativeOrAbsolute) return '';
+  if (relativeOrAbsolute.startsWith('http://') || relativeOrAbsolute.startsWith('https://')) {
+    return relativeOrAbsolute;
+  }
+  const base = API_BASE_URL.replace(/\/+$/, '');
+  const path = relativeOrAbsolute.startsWith('/') ? relativeOrAbsolute : `/${relativeOrAbsolute}`;
+  return `${base}${path}`;
 };
 
 export default api;

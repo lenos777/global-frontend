@@ -44,6 +44,42 @@
   .focus\:border-primary-300 {
     @apply focus:border-blue-300;
   }
+  
+  .text-logo-blue {
+    color: #1a365d;
+  }
+  
+  .bg-logo-blue {
+    background-color: #1a365d;
+  }
+  
+  .bg-logo-blue-10 {
+    background-color: rgba(26, 54, 93, 0.1);
+  }
+  
+  .text-logo-red {
+    color: #e53e3e;
+  }
+  
+  .bg-logo-red {
+    background-color: #e53e3e;
+  }
+  
+  .from-logo-blue {
+    background-image: linear-gradient(to bottom right, #1a365d, var(--tw-gradient-to, rgba(26, 54, 93, 0)));
+  }
+  
+  .to-logo-blue-light {
+    --tw-gradient-to: #2d5aa0;
+  }
+  
+  .from-logo-red {
+    background-image: linear-gradient(to right, #e53e3e, var(--tw-gradient-to, rgba(229, 62, 62, 0)));
+  }
+  
+  .to-logo-red-light {
+    --tw-gradient-to: #fc8181;
+  }
 }
 
 :root {

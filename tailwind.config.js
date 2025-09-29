@@ -9,6 +9,7 @@ export default {
       colors: {
         'logo-blue': '#1a365d',
         'logo-blue-light': '#2d5aa0',
+        'logo-blue-10': 'rgba(26, 54, 93, 0.1)',
         'logo-red': '#e53e3e',
         'logo-red-light': '#fc8181',
         primary: {
