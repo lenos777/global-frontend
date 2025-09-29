@@ -5,7 +5,7 @@ import axios from 'axios';
 // In production, use full API URL
 const RAW_BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
   ? import.meta.env.VITE_API_URL
-  : 'http://localhost:5000';
+  : 'https://global-backend-1-kvjo.onrender.com';
 // Remove trailing '/api' if present to avoid double '/api' in request paths
 export const API_BASE_URL = RAW_BASE.replace(/\/?api\/?$/i, '');
   
